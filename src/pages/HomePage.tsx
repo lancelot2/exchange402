@@ -322,44 +322,7 @@ app.use(await get402Config('your_key'));`}</code>
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src={logo} alt="402exchange" className="w-8 h-8" />
-                <span className="font-bold text-lg">402exchange</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Configuration management for x402 payment protocol
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-3">Product</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="#" className="hover:text-foreground">Features</Link></li>
-                <li><Link to="#" className="hover:text-foreground">Pricing</Link></li>
-                <li><Link to="#" className="hover:text-foreground">Documentation</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-3">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="https://github.com/coinbase/x402" className="hover:text-foreground" target="_blank" rel="noopener noreferrer">x402 Docs</a></li>
-                <li><Link to="#" className="hover:text-foreground">API Reference</Link></li>
-                <li><Link to="#" className="hover:text-foreground">Guides</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-3">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="#" className="hover:text-foreground">About</Link></li>
-                <li><Link to="#" className="hover:text-foreground">Blog</Link></li>
-                <li><Link to="#" className="hover:text-foreground">Contact</Link></li>
-              </ul>
-            </div>
-          </div>
+          
 
           <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
             <p>&copy; 2025 402exchange. Built on x402 by Coinbase.</p>
