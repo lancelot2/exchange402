@@ -2,29 +2,16 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Settings, 
-  Code2, 
-  BarChart3, 
-  Zap,
-  ArrowRight,
-  Check,
-  Wallet,
-  TrendingUp
-} from 'lucide-react';
+import { Settings, Code2, BarChart3, Zap, ArrowRight, Check, Wallet, TrendingUp } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import shieldIcon from '@/assets/shield-icon.png';
-
 export default function HomePage() {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32 hero-blue text-white">
         <div className="container mx-auto px-4 relative">
           <div className="max-w-[66rem] mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Enables agents to access your paying API
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Your API, Instantly Payable by AI Agents</h1>
             <p className="text-xl md:text-2xl mb-12 opacity-90">
               The best way to accept digital payments.
             </p>
@@ -82,7 +69,9 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20" style={{ background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")" }}>
+      <section className="py-20" style={{
+      background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")"
+    }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -225,7 +214,9 @@ app.use(await get402Config('your_key'));`}</code>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20" style={{ background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")" }}>
+      <section className="py-20" style={{
+      background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")"
+    }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -377,6 +368,5 @@ app.use(await get402Config('your_key'));`}</code>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 }
