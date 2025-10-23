@@ -14,7 +14,164 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      api_calls: {
+        Row: {
+          endpoint_id: string | null
+          id: string
+          payment_amount: number | null
+          request_metadata: Json | null
+          response_time_ms: number | null
+          status: string
+          timestamp: string
+          user_id: string
+        }
+        Insert: {
+          endpoint_id?: string | null
+          id?: string
+          payment_amount?: number | null
+          request_metadata?: Json | null
+          response_time_ms?: number | null
+          status: string
+          timestamp?: string
+          user_id: string
+        }
+        Update: {
+          endpoint_id?: string | null
+          id?: string
+          payment_amount?: number | null
+          request_metadata?: Json | null
+          response_time_ms?: number | null
+          status?: string
+          timestamp?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "api_calls_endpoint_id_fkey"
+            columns: ["endpoint_id"]
+            isOneToOne: false
+            referencedRelation: "endpoints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      api_keys: {
+        Row: {
+          api_key: string
+          created_at: string
+          id: string
+          is_active: boolean
+          last_used_at: string | null
+          user_id: string
+        }
+        Insert: {
+          api_key: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_used_at?: string | null
+          user_id: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_used_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      endpoints: {
+        Row: {
+          created_at: string
+          currency: string
+          description: string | null
+          endpoint_path: string
+          id: string
+          is_active: boolean
+          network: string
+          price_per_call: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          currency: string
+          description?: string | null
+          endpoint_path: string
+          id?: string
+          is_active?: boolean
+          network: string
+          price_per_call: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          description?: string | null
+          endpoint_path?: string
+          id?: string
+          is_active?: boolean
+          network?: string
+          price_per_call?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wallets: {
+        Row: {
+          created_at: string
+          id: string
+          network: string
+          updated_at: string
+          user_id: string
+          wallet_address: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          network: string
+          updated_at?: string
+          user_id: string
+          wallet_address: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          network?: string
+          updated_at?: string
+          user_id?: string
+          wallet_address?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
