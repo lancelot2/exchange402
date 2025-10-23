@@ -13,6 +13,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import logo from '@/assets/logo.png';
+import shieldIcon from '@/assets/shield-icon.png';
 
 export default function HomePage() {
   return (
@@ -65,16 +66,13 @@ export default function HomePage() {
             </div>
 
             {/* Powered by x402 */}
-            <div className="flex flex-col items-center gap-6 py-8">
-              <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M60 10L10 35V70C10 95 30 115 60 130C90 115 110 95 110 70V35L60 10Z" fill="white" stroke="white" strokeWidth="4"/>
-                <text x="60" y="90" fontSize="60" fontWeight="bold" fill="#2196F3" textAnchor="middle">$</text>
-              </svg>
-              <div className="text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-2">
+            <div className="inline-flex items-center gap-4 px-6 py-3">
+              <img src={shieldIcon} alt="x402 Protocol" className="w-12 h-12" />
+              <div className="text-left">
+                <h2 className="text-2xl font-bold">
                   Powered by x402
                 </h2>
-                <p className="text-xl md:text-2xl opacity-90">
+                <p className="text-base opacity-90">
                   Open protocol for digital payments
                 </p>
               </div>
