@@ -12,9 +12,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-[66rem] mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Your API, Instantly Payable by AI Agents</h1>
-            <p className="text-xl md:text-2xl mb-12 opacity-90">
-              The best way to accept digital payments.
-            </p>
+            <p className="text-xl md:text-2xl mb-12 opacity-90">Configuration and monitoring layer for digital payments</p>
             
             {/* Features Grid */}
             <div className="grid grid-cols-2 md:grid-cols-6 gap-6 mb-12 bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
