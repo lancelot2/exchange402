@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
-import { Code2, LogOut } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import logo from '@/assets/logo.png';
 
 export const Navbar = () => {
   const { user, signOut } = useAuth();
@@ -20,13 +21,11 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+    <nav className="border-b border-white/10 hero-blue sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center shadow-glow">
-            <Code2 className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-bold text-xl">402exchange</span>
+          <img src={logo} alt="402exchange" className="w-8 h-8" />
+          <span className="font-bold text-xl text-white">402exchange</span>
         </Link>
 
         <div className="flex items-center gap-3">
@@ -61,10 +60,10 @@ export const Navbar = () => {
             </DropdownMenu>
           ) : (
             <>
-              <Button variant="ghost" asChild>
+              <Button variant="ghost" asChild className="text-white hover:bg-white/10">
                 <Link to="/login">Login</Link>
               </Button>
-              <Button asChild>
+              <Button asChild className="bg-white text-[#0166FF] hover:bg-white/90">
                 <Link to="/signup">Sign Up</Link>
               </Button>
             </>

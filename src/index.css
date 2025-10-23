@@ -39,6 +39,7 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     --hero-blue: 214 100% 50%;
+    --integration-bg: 26 22% 17%;
     --gradient-hero: linear-gradient(135deg, hsl(214 100% 50%) 0%, hsl(214 100% 60%) 100%);
     --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%), hsl(220 20% 98%));
     

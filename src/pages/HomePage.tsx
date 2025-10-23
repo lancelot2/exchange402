@@ -29,7 +29,7 @@ export default function HomePage() {
             </p>
             
             {/* Features Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-6 mb-12 bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-4xl">🌐</span>
                 <span className="text-sm font-medium">New distribution</span>
@@ -116,27 +116,27 @@ export default function HomePage() {
             </Card>
 
             <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
-              <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
-              <Wallet className="w-10 h-10 text-muted-foreground mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Smart Wallet</h3>
+              <Badge className="absolute top-4 right-4 hero-blue text-white">Coming Soon</Badge>
+              <Wallet className="w-10 h-10 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Smart Wallet</h3>
               <p className="text-muted-foreground">
                 Advanced wallet features for seamless payment management and automation.
               </p>
             </Card>
 
             <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
-              <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
-              <TrendingUp className="w-10 h-10 text-muted-foreground mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Dynamic Pricing</h3>
+              <Badge className="absolute top-4 right-4 hero-blue text-white">Coming Soon</Badge>
+              <TrendingUp className="w-10 h-10 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Dynamic Pricing</h3>
               <p className="text-muted-foreground">
                 Automatically adjust pricing based on demand, usage patterns, and market conditions.
               </p>
             </Card>
 
             <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
-              <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
-              <Zap className="w-10 h-10 text-muted-foreground mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Intelligent Caching</h3>
+              <Badge className="absolute top-4 right-4 hero-blue text-white">Coming Soon</Badge>
+              <Zap className="w-10 h-10 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Intelligent Caching</h3>
               <p className="text-muted-foreground">
                 Reduce costs and improve response times with smart caching strategies.
               </p>
@@ -146,7 +146,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-[#1a1a1a] text-white">
+      <section id="how-it-works" className="py-20 bg-[#1A1F2C] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
