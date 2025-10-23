@@ -65,11 +65,19 @@ export default function HomePage() {
             </div>
 
             {/* Powered by x402 */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-              <Code2 className="w-5 h-5" />
-              <span className="text-sm">
-                Powered by <span className="font-semibold">x402</span> - open protocol for internet-native payments
-              </span>
+            <div className="flex flex-col items-center gap-6 py-8">
+              <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 10L10 35V70C10 95 30 115 60 130C90 115 110 95 110 70V35L60 10Z" fill="white" stroke="white" strokeWidth="4"/>
+                <text x="60" y="90" fontSize="60" fontWeight="bold" fill="#2196F3" textAnchor="middle">$</text>
+              </svg>
+              <div className="text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-2">
+                  Powered by x402
+                </h2>
+                <p className="text-xl md:text-2xl opacity-90">
+                  Open protocol for digital payments
+                </p>
+              </div>
             </div>
           </div>
         </div>
