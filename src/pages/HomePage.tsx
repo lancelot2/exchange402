@@ -8,57 +8,78 @@ import {
   BarChart3, 
   Zap,
   ArrowRight,
-  Check
+  Check,
+  Wallet,
+  TrendingUp
 } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 md:py-32">
-        <div className="absolute inset-0 gradient-hero opacity-10"></div>
+      <section className="relative overflow-hidden py-20 md:py-32 hero-blue text-white">
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-hero">
-              Add Pay-Per-Use Pricing to Your APIs in Minutes
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Enables agents to access your paying API
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Built on x402. Managed through our dashboard. No redeployments for price changes.
+            <p className="text-xl md:text-2xl mb-12 opacity-90">
+              The best way to accept digital payments.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="shadow-glow">
+            
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">🌐</span>
+                <span className="text-sm font-medium">New distribution</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">⚡</span>
+                <span className="text-sm font-medium">Instant settlement</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">🔗</span>
+                <span className="text-sm font-medium">Blockchain Agnostic</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">✨</span>
+                <span className="text-sm font-medium">Frictionless</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">🔒</span>
+                <span className="text-sm font-medium">Private & secure</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">🌍</span>
+                <span className="text-sm font-medium">Web native</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
                 <Link to="/signup">
                   Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
                 <Link to="#how-it-works">How It Works</Link>
               </Button>
             </div>
 
-            {/* Code Preview */}
-            <Card className="mt-12 p-6 text-left bg-card border-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-destructive"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <span className="text-sm text-muted-foreground ml-2">server.js</span>
-              </div>
-              <pre className="text-sm overflow-x-auto">
-                <code>{`import { paymentMiddleware } from '@coinbase/x402';
-import { get402Config } from '@402exchange/config';
-
-app.use(await get402Config('your_api_key'));`}</code>
-              </pre>
-            </Card>
+            {/* Powered by x402 */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <Code2 className="w-5 h-5" />
+              <span className="text-sm">
+                Powered by <span className="font-semibold">x402</span> - open protocol for internet-native payments
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 diagonal-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -69,8 +90,8 @@ app.use(await get402Config('your_api_key'));`}</code>
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-card">
               <Settings className="w-10 h-10 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">Dashboard Control</h3>
               <p className="text-muted-foreground">
@@ -78,7 +99,7 @@ app.use(await get402Config('your_api_key'));`}</code>
               </p>
             </Card>
 
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-card">
               <Code2 className="w-10 h-10 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">Built on x402</h3>
               <p className="text-muted-foreground">
@@ -86,7 +107,7 @@ app.use(await get402Config('your_api_key'));`}</code>
               </p>
             </Card>
 
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-card">
               <BarChart3 className="w-10 h-10 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">Smart Analytics</h3>
               <p className="text-muted-foreground">
@@ -94,7 +115,25 @@ app.use(await get402Config('your_api_key'));`}</code>
               </p>
             </Card>
 
-            <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden">
+            <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
+              <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
+              <Wallet className="w-10 h-10 text-muted-foreground mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Smart Wallet</h3>
+              <p className="text-muted-foreground">
+                Advanced wallet features for seamless payment management and automation.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
+              <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
+              <TrendingUp className="w-10 h-10 text-muted-foreground mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Dynamic Pricing</h3>
+              <p className="text-muted-foreground">
+                Automatically adjust pricing based on demand, usage patterns, and market conditions.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow relative overflow-hidden bg-card">
               <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">Coming Soon</Badge>
               <Zap className="w-10 h-10 text-muted-foreground mb-4" />
               <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Intelligent Caching</h3>
@@ -107,48 +146,48 @@ app.use(await get402Config('your_api_key'));`}</code>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20">
+      <section id="how-it-works" className="py-20 bg-[#1a1a1a] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Simple Integration in 3 Steps
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg opacity-80 max-w-2xl mx-auto">
               Get up and running in minutes, not hours
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
                 1
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-semibold mb-2">Configure Your API</h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="opacity-80 mb-4">
                   Set up endpoints, pricing, and wallet in our dashboard. No code required.
                 </p>
               </div>
-              <Card className="flex-1 p-4 bg-muted">
+              <Card className="flex-1 p-4 bg-white/5 border-white/10 text-white">
                 <div className="text-sm font-mono">
-                  <div className="text-muted-foreground">Endpoint: <span className="text-foreground">/api/data</span></div>
-                  <div className="text-muted-foreground">Price: <span className="text-foreground">0.001 USDC</span></div>
-                  <div className="text-muted-foreground">Network: <span className="text-foreground">Base Mainnet</span></div>
+                  <div className="opacity-70">Endpoint: <span className="opacity-100">/api/data</span></div>
+                  <div className="opacity-70">Price: <span className="opacity-100">0.001 USDC</span></div>
+                  <div className="opacity-70">Network: <span className="opacity-100">Base Mainnet</span></div>
                 </div>
               </Card>
             </div>
 
             <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
                 2
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-semibold mb-2">Add Two Lines of Code</h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="opacity-80 mb-4">
                   Install x402 + our config wrapper in your API server. That's it.
                 </p>
               </div>
-              <Card className="flex-1 p-4 bg-card border-2">
+              <Card className="flex-1 p-4 bg-white/5 border-white/10 text-white">
                 <pre className="text-xs overflow-x-auto">
                   <code>{`npm install @coinbase/x402 @402exchange/config
 
@@ -158,23 +197,23 @@ app.use(await get402Config('your_key'));`}</code>
             </div>
 
             <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
                 3
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-semibold mb-2">Control Everything from Dashboard</h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="opacity-80 mb-4">
                   Change pricing, monitor usage, no redeployments. Update instantly.
                 </p>
               </div>
               <div className="flex-1 flex gap-2">
-                <Card className="p-3 flex-1 text-center">
+                <Card className="p-3 flex-1 text-center bg-white/5 border-white/10 text-white">
                   <div className="text-2xl font-bold text-primary">1,247</div>
-                  <div className="text-xs text-muted-foreground">API Calls</div>
+                  <div className="text-xs opacity-70">API Calls</div>
                 </Card>
-                <Card className="p-3 flex-1 text-center">
+                <Card className="p-3 flex-1 text-center bg-white/5 border-white/10 text-white">
                   <div className="text-2xl font-bold text-primary">$12.47</div>
-                  <div className="text-xs text-muted-foreground">Revenue</div>
+                  <div className="text-xs opacity-70">Revenue</div>
                 </Card>
               </div>
             </div>
@@ -183,7 +222,7 @@ app.use(await get402Config('your_key'));`}</code>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 diagonal-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -294,9 +333,7 @@ app.use(await get402Config('your_key'));`}</code>
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-                  <Code2 className="w-5 h-5 text-white" />
-                </div>
+                <img src={logo} alt="402exchange" className="w-8 h-8" />
                 <span className="font-bold text-lg">402exchange</span>
               </div>
               <p className="text-sm text-muted-foreground">
