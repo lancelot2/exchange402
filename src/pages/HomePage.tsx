@@ -67,7 +67,7 @@ export default function HomePage() {
 
             {/* Powered by x402 */}
             <div className="inline-flex items-center gap-4 px-6 py-3">
-              <img src={shieldIcon} alt="x402 Protocol" className="w-12 h-12" />
+              <img src={shieldIcon} alt="x402 Protocol" className="w-12 h-auto" />
               <div className="text-left">
                 <h2 className="text-2xl font-bold">
                   Powered by x402
