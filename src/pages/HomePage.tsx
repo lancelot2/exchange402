@@ -20,7 +20,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32 hero-blue text-white">
         <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-[66rem] mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Enables agents to access your paying API
             </h1>
@@ -56,14 +56,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
+            <div className="flex justify-center mb-12">
+              <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-white/20 text-lg px-8 py-6 font-semibold">
                 <Link to="/signup">
-                  Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
+                  Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
-                <Link to="#how-it-works">How It Works</Link>
               </Button>
             </div>
 
@@ -79,7 +76,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-muted/30 diagonal-pattern">
+      <section className="py-20" style={{ background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -222,7 +219,7 @@ app.use(await get402Config('your_key'));`}</code>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-muted/30 diagonal-pattern">
+      <section className="py-20" style={{ background: "linear-gradient(to bottom,white 66px,transparent 500px),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%232196f3' fill-opacity='0.1'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">

@@ -21,10 +21,10 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="border-b border-white/10 hero-blue sticky top-0 z-50">
+    <nav className="hero-blue sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img src={logo} alt="402exchange" className="w-8 h-8" />
+          <img src={logo} alt="402exchange" className="w-[2.3rem] h-[2.3rem]" />
           <span className="font-bold text-xl text-white">402exchange</span>
         </Link>
 
