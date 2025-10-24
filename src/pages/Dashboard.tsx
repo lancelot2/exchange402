@@ -5,7 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { Globe, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { SeedDataButton } from '@/components/SeedDataButton';
+// import { SeedDataButton } from '@/components/SeedDataButton';
 import { DashboardStats } from '@/components/dashboard/DashboardStats';
 import { ApiCallsTable } from '@/components/dashboard/ApiCallsTable';
 import { DateRangePicker } from '@/components/dashboard/DateRangePicker';
@@ -187,14 +187,12 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-          <p className="text-muted-foreground">
-            Monitor your API usage and revenue in real-time
-          </p>
-        </div>
-        <SeedDataButton />
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
+        <p className="text-muted-foreground">
+          Monitor your API usage and revenue in real-time
+        </p>
+        {/* <SeedDataButton /> */}
       </div>
 
       {/* Date Range Picker */}

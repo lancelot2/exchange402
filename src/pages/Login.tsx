@@ -56,12 +56,6 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-muted/30">
       <Card className="w-full max-w-md p-8">
-        <div className="flex justify-center mb-8">
-          <div className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center shadow-glow">
-            <Code2 className="w-7 h-7 text-white" />
-          </div>
-        </div>
-
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold mb-2">Welcome back</h1>
           <p className="text-muted-foreground">
