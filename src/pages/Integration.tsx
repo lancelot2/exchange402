@@ -84,10 +84,25 @@ export default function Integration() {
 
       <Card className="p-6">
         <Tabs defaultValue="quickstart">
-          <TabsList>
-            <TabsTrigger value="quickstart">Quick Start</TabsTrigger>
-            <TabsTrigger value="nextjs">Next.js</TabsTrigger>
-            <TabsTrigger value="other">Other Frameworks</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger 
+              value="quickstart"
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Quick Start
+            </TabsTrigger>
+            <TabsTrigger 
+              value="nextjs"
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Next.js
+            </TabsTrigger>
+            <TabsTrigger 
+              value="other"
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Other Frameworks
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="quickstart" className="space-y-4">
@@ -100,8 +115,19 @@ export default function Integration() {
 
             <div>
               <h3 className="font-semibold mb-2">2. Add to Your Server</h3>
-              <Card className="p-4 bg-muted">
-                <pre className="text-sm overflow-x-auto"><code>{`import { paymentMiddleware } from '@coinbase/x402';
+              <Card className="p-4 bg-muted relative">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="absolute top-2 right-2"
+                  onClick={() => copyToClipboard(`import { paymentMiddleware } from '@coinbase/x402';
+import { get402Config } from '@402exchange/config';
+
+app.use(await get402Config('${apiKey}'));`)}
+                >
+                  <Copy className="w-4 h-4" />
+                </Button>
+                <pre className="text-sm overflow-x-auto pr-10"><code>{`import { paymentMiddleware } from '@coinbase/x402';
 import { get402Config } from '@402exchange/config';
 
 app.use(await get402Config('${apiKey}'));`}</code></pre>
