@@ -24,6 +24,7 @@ export type Database = {
           status: string
           timestamp: string
           user_id: string
+          wallet_address: string | null
         }
         Insert: {
           endpoint_id?: string | null
@@ -34,6 +35,7 @@ export type Database = {
           status: string
           timestamp?: string
           user_id: string
+          wallet_address?: string | null
         }
         Update: {
           endpoint_id?: string | null
@@ -44,6 +46,7 @@ export type Database = {
           status?: string
           timestamp?: string
           user_id?: string
+          wallet_address?: string | null
         }
         Relationships: [
           {

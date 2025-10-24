@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import { 
-  Activity, 
-  DollarSign, 
-  Globe, 
-  Clock,
-  TrendingUp,
-  ArrowRight
-} from 'lucide-react';
+import { Globe, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { SeedDataButton } from '@/components/SeedDataButton';
+import { DashboardStats } from '@/components/dashboard/DashboardStats';
+import { ApiCallsTable } from '@/components/dashboard/ApiCallsTable';
 
 interface DashboardStats {
   totalCalls: number;
@@ -29,6 +23,7 @@ interface RecentCall {
   payment_amount: number;
   status: 'success' | 'failed' | 'pending';
   response_time_ms: number;
+  wallet_address: string | null;
 }
 
 export default function Dashboard() {
@@ -98,11 +93,12 @@ export default function Dashboard() {
           payment_amount,
           status,
           response_time_ms,
+          wallet_address,
           endpoints (endpoint_path)
         `)
         .eq('user_id', user?.id)
         .order('timestamp', { ascending: false })
-        .limit(10);
+        .limit(100);
 
       if (recentError) throw recentError;
 
@@ -113,6 +109,7 @@ export default function Dashboard() {
         payment_amount: Number(call.payment_amount) || 0,
         status: call.status as 'success' | 'failed' | 'pending',
         response_time_ms: call.response_time_ms || 0,
+        wallet_address: call.wallet_address,
       })) || [];
 
       setRecentCalls(formattedCalls);
@@ -166,113 +163,12 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Activity className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Total API Calls</p>
-              <p className="text-2xl font-bold">{stats.totalCalls.toLocaleString()}</p>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Total Revenue</p>
-              <p className="text-2xl font-bold">${stats.totalRevenue.toFixed(2)}</p>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Globe className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Active Endpoints</p>
-              <p className="text-2xl font-bold">{stats.activeEndpoints}</p>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Clock className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Avg Response Time</p>
-              <p className="text-2xl font-bold">{stats.avgResponseTime}ms</p>
-            </div>
-          </div>
-        </Card>
-      </div>
+      <DashboardStats stats={stats} />
 
       {/* Recent Activity */}
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-primary" />
-            Recent Activity
-          </h2>
-        </div>
-
-        {recentCalls.length === 0 ? (
-          <div className="text-center py-12 text-muted-foreground">
-            <Activity className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>No API calls yet. Once you start receiving requests, they'll appear here.</p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border text-left">
-                  <th className="pb-3 text-sm font-medium text-muted-foreground">Time</th>
-                  <th className="pb-3 text-sm font-medium text-muted-foreground">Endpoint</th>
-                  <th className="pb-3 text-sm font-medium text-muted-foreground">Amount</th>
-                  <th className="pb-3 text-sm font-medium text-muted-foreground">Status</th>
-                  <th className="pb-3 text-sm font-medium text-muted-foreground">Response</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentCalls.map((call) => (
-                  <tr key={call.id} className="border-b border-border/50 last:border-0">
-                    <td className="py-4 text-sm">
-                      {new Date(call.timestamp).toLocaleString()}
-                    </td>
-                    <td className="py-4 text-sm font-mono">{call.endpoint_path}</td>
-                    <td className="py-4 text-sm">${call.payment_amount.toFixed(4)}</td>
-                    <td className="py-4 text-sm">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          call.status === 'success'
-                            ? 'bg-green-500/10 text-green-600'
-                            : call.status === 'failed'
-                            ? 'bg-red-500/10 text-red-600'
-                            : 'bg-yellow-500/10 text-yellow-600'
-                        }`}
-                      >
-                        {call.status}
-                      </span>
-                    </td>
-                    <td className="py-4 text-sm text-muted-foreground">
-                      {call.response_time_ms}ms
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </Card>
+      <div className="mt-8">
+        <ApiCallsTable calls={recentCalls} />
+      </div>
     </div>
   );
 }

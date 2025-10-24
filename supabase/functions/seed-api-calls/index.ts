@@ -65,6 +65,13 @@ Deno.serve(async (req) => {
     // Create 20 fake API calls
     const fakeApiCalls = [];
     const statuses = ['success', 'success', 'success', 'success', 'failed'];
+    const mockWallets = [
+      '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
+      '0x8ba1f109551bD432803012645Ac136ddd64DBA72',
+      '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B',
+      '0x4B0897b0513fdC7C541B6d9D7E929C4e5364D2dB',
+      '0x583031D1113aD414F02576BD6afaBfb302140225',
+    ];
     const now = new Date();
 
     for (let i = 0; i < 20; i++) {
@@ -78,6 +85,7 @@ Deno.serve(async (req) => {
         payment_amount: (Math.random() * 0.01).toFixed(4),
         response_time_ms: Math.floor(Math.random() * 500) + 50,
         status: status,
+        wallet_address: mockWallets[Math.floor(Math.random() * mockWallets.length)],
         request_metadata: {
           ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
           user_agent: 'API-Client/1.0',
