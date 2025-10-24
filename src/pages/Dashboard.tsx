@@ -8,6 +8,9 @@ import { toast } from 'sonner';
 import { SeedDataButton } from '@/components/SeedDataButton';
 import { DashboardStats } from '@/components/dashboard/DashboardStats';
 import { ApiCallsTable } from '@/components/dashboard/ApiCallsTable';
+import { DateRangePicker } from '@/components/dashboard/DateRangePicker';
+import { DateRange } from 'react-day-picker';
+import { subHours, subDays, subWeeks } from 'date-fns';
 
 interface DashboardStats {
   totalCalls: number;
@@ -37,12 +40,26 @@ export default function Dashboard() {
   const [recentCalls, setRecentCalls] = useState<RecentCall[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasEndpoints, setHasEndpoints] = useState(false);
+  
+  const now = new Date();
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(now, 1),
+    to: now,
+  });
+  const [selectedPreset, setSelectedPreset] = useState('1 day');
+
+  const presets = [
+    { label: '1 hour', value: { from: subHours(now, 1), to: now } },
+    { label: '6 hours', value: { from: subHours(now, 6), to: now } },
+    { label: '1 day', value: { from: subDays(now, 1), to: now } },
+    { label: '1 week', value: { from: subWeeks(now, 1), to: now } },
+  ];
 
   useEffect(() => {
-    if (user) {
+    if (user && dateRange?.from) {
       loadDashboardData();
     }
-  }, [user]);
+  }, [user, dateRange]);
 
   const loadDashboardData = async () => {
     try {
@@ -63,12 +80,21 @@ export default function Dashboard() {
 
       const activeCount = endpoints.filter((e) => e.is_active).length;
 
-      // Get API calls stats
-      const { data: calls, error: callsError } = await supabase
+      // Get API calls stats filtered by date range
+      let callsQuery = supabase
         .from('api_calls')
         .select('payment_amount, response_time_ms')
         .eq('user_id', user?.id)
         .eq('status', 'success');
+
+      if (dateRange?.from) {
+        callsQuery = callsQuery.gte('timestamp', dateRange.from.toISOString());
+      }
+      if (dateRange?.to) {
+        callsQuery = callsQuery.lte('timestamp', dateRange.to.toISOString());
+      }
+
+      const { data: calls, error: callsError } = await callsQuery;
 
       if (callsError) throw callsError;
 
@@ -84,8 +110,8 @@ export default function Dashboard() {
         avgResponseTime: Math.round(avgResponseTime),
       });
 
-      // Get recent calls with endpoint info
-      const { data: recent, error: recentError } = await supabase
+      // Get recent calls with endpoint info filtered by date range
+      let recentQuery = supabase
         .from('api_calls')
         .select(`
           id,
@@ -99,6 +125,15 @@ export default function Dashboard() {
         .eq('user_id', user?.id)
         .order('timestamp', { ascending: false })
         .limit(100);
+
+      if (dateRange?.from) {
+        recentQuery = recentQuery.gte('timestamp', dateRange.from.toISOString());
+      }
+      if (dateRange?.to) {
+        recentQuery = recentQuery.lte('timestamp', dateRange.to.toISOString());
+      }
+
+      const { data: recent, error: recentError } = await recentQuery;
 
       if (recentError) throw recentError;
 
@@ -161,6 +196,15 @@ export default function Dashboard() {
         </div>
         <SeedDataButton />
       </div>
+
+      {/* Date Range Picker */}
+      <DateRangePicker
+        dateRange={dateRange}
+        onDateRangeChange={setDateRange}
+        presets={presets}
+        selectedPreset={selectedPreset}
+        onPresetChange={setSelectedPreset}
+      />
 
       {/* Stats Grid */}
       <DashboardStats stats={stats} />

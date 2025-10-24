@@ -29,23 +29,20 @@ Deno.serve(async (req) => {
 
     console.log(`Seeding API calls for user: ${user.id}`);
 
-    // Get or create an endpoint
-    const { data: endpoints } = await supabase
+    // Get all endpoints for the user
+    let { data: endpoints } = await supabase
       .from('endpoints')
       .select('id')
-      .eq('user_id', user.id)
-      .limit(1);
-
-    let endpointId: string;
+      .eq('user_id', user.id);
 
     if (!endpoints || endpoints.length === 0) {
-      // Create a sample endpoint
+      // Create a sample endpoint if none exist
       const { data: newEndpoint, error: endpointError } = await supabase
         .from('endpoints')
         .insert({
           user_id: user.id,
           endpoint_path: '/api/demo',
-          price_per_call: 0.001,
+          price_per_call: 0.01,
           currency: 'USD',
           network: 'base',
           description: 'Demo endpoint for testing',
@@ -55,14 +52,13 @@ Deno.serve(async (req) => {
         .single();
 
       if (endpointError) throw endpointError;
-      endpointId = newEndpoint.id;
-      console.log(`Created demo endpoint: ${endpointId}`);
-    } else {
-      endpointId = endpoints[0].id;
-      console.log(`Using existing endpoint: ${endpointId}`);
+      endpoints = [newEndpoint];
+      console.log(`Created demo endpoint: ${newEndpoint.id}`);
     }
 
-    // Create 20 fake API calls
+    console.log(`Distributing calls across ${endpoints.length} endpoint(s)`);
+
+    // Create 20 fake API calls distributed evenly across endpoints
     const fakeApiCalls = [];
     const statuses = ['success', 'success', 'success', 'success', 'failed'];
     const mockWallets = [
@@ -77,12 +73,14 @@ Deno.serve(async (req) => {
     for (let i = 0; i < 20; i++) {
       const timestamp = new Date(now.getTime() - (i * 3600000)); // Each call 1 hour apart
       const status = statuses[Math.floor(Math.random() * statuses.length)];
+      // Distribute calls evenly across all endpoints
+      const endpointIndex = i % endpoints.length;
       
       fakeApiCalls.push({
         user_id: user.id,
-        endpoint_id: endpointId,
+        endpoint_id: endpoints[endpointIndex].id,
         timestamp: timestamp.toISOString(),
-        payment_amount: (Math.random() * 0.01).toFixed(4),
+        payment_amount: (Math.random() * 0.09 + 0.01).toFixed(2), // Min $0.01, max $0.10
         response_time_ms: Math.floor(Math.random() * 500) + 50,
         status: status,
         wallet_address: mockWallets[Math.floor(Math.random() * mockWallets.length)],
@@ -105,8 +103,8 @@ Deno.serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'Seeded 20 API calls successfully',
-        endpointId 
+        message: `Seeded 20 API calls across ${endpoints.length} endpoint(s)`,
+        endpointCount: endpoints.length 
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
