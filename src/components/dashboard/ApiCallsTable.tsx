@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Activity, TrendingUp, Download, Search, ArrowUpDown } from 'lucide-react';
+import { Activity, TrendingUp, Download, Search, ArrowUpDown, RefreshCw, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface ApiCall {
@@ -24,12 +24,13 @@ interface ApiCall {
 
 interface ApiCallsTableProps {
   calls: ApiCall[];
+  onRefresh?: () => void;
 }
 
 type SortField = 'timestamp' | 'endpoint_path' | 'payment_amount' | 'status' | 'response_time_ms';
 type SortDirection = 'asc' | 'desc';
 
-export function ApiCallsTable({ calls }: ApiCallsTableProps) {
+export function ApiCallsTable({ calls, onRefresh }: ApiCallsTableProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<SortField>('timestamp');
@@ -105,10 +106,17 @@ export function ApiCallsTable({ calls }: ApiCallsTableProps) {
   return (
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-primary" />
-          Recent Activity
-        </h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl font-semibold flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-primary" />
+            Recent Activity
+          </h2>
+          {onRefresh && (
+            <Button onClick={onRefresh} variant="ghost" size="icon">
+              <RefreshCw className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
         <Button onClick={exportToCSV} variant="outline" size="sm">
           <Download className="w-4 h-4 mr-2" />
           Export
@@ -198,6 +206,7 @@ export function ApiCallsTable({ calls }: ApiCallsTableProps) {
                     <ArrowUpDown className="w-3 h-3" />
                   </button>
                 </th>
+                <th className="pb-3 text-sm font-medium text-muted-foreground"></th>
               </tr>
             </thead>
             <tbody>
@@ -223,6 +232,19 @@ export function ApiCallsTable({ calls }: ApiCallsTableProps) {
                     </span>
                   </td>
                   <td className="py-4 text-sm text-muted-foreground">{call.response_time_ms}ms</td>
+                  <td className="py-4 text-sm">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => {
+                        // Will redirect to BaseScan transaction
+                        toast.info('BaseScan integration coming soon');
+                      }}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>

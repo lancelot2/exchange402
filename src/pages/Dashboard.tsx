@@ -211,7 +211,7 @@ export default function Dashboard() {
 
       {/* Recent Activity */}
       <div className="mt-8">
-        <ApiCallsTable calls={recentCalls} />
+        <ApiCallsTable calls={recentCalls} onRefresh={loadDashboardData} />
       </div>
     </div>
   );
