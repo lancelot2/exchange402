@@ -96,6 +96,12 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Map network names for x402 compatibility
+    const networkMapping: Record<string, string> = {
+      'base-mainnet': 'base',
+      'base-sepolia': 'base-sepolia'
+    };
+
     // Format endpoints for x402 middleware
     const endpoints: Record<string, { price: string; network: string }> = {};
     
@@ -105,9 +111,10 @@ Deno.serve(async (req) => {
           ? endpoint.endpoint_path 
           : `/${endpoint.endpoint_path}`;
         const key = `GET ${path}`;
+        const x402Network = networkMapping[endpoint.network] || endpoint.network;
         endpoints[key] = {
           price: `$${parseFloat(endpoint.price_per_call).toFixed(3)}`,
-          network: endpoint.network,
+          network: x402Network,
         };
       });
     }
@@ -116,7 +123,7 @@ Deno.serve(async (req) => {
     const config = {
       walletAddress: walletData.wallet_address,
       endpoints,
-      network: walletData.network,
+      network: networkMapping[walletData.network] || walletData.network,
       asset: 'USDC',
     };
 
