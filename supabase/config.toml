@@ -1,1 +1,7 @@
 project_id = "sxcllqmzlwknqylootoa"
+
+[functions.get-config]
+verify_jwt = false
+
+[functions.seed-api-calls]
+verify_jwt = false
